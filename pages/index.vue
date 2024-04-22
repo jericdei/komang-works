@@ -1,11 +1,13 @@
 <script setup lang="ts">
 useHead({
-    title: 'Komang Works'
+    title: 'KomangWorks',
 })
 </script>
 
 <template>
-    <main>
-        <h1 class="text-red-700">Index Page</h1>
+    <main class="lg:px-16">
+        <section class="">
+            <h1 class="lg:text-7xl">KomangWorks</h1>
+        </section>
     </main>
 </template>
