@@ -29,7 +29,7 @@ useHead({
                 <NuxtImg
                     class="rounded-lg"
                     alt="Kalan de Used Oil"
-                    src="/images/kalan-de-used-oil/1.jpg"
+                    src="/images/kalan-de-used-oil/main.jpg"
                     width="600"
                 />
             </div>
