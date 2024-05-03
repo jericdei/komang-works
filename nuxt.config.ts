@@ -6,7 +6,7 @@ export default defineNuxtConfig({
         viewTransition: true,
     },
     devtools: { enabled: true },
-    modules: ['@nuxtjs/tailwindcss', 'nuxt-primevue'],
+    modules: ['@nuxtjs/tailwindcss', 'nuxt-primevue', "@nuxt/image"],
     primevue: {
         options: {
             unstyled: true,

@@ -7,7 +7,7 @@ useHead({
 <template>
     <main class="lg:px-16">
         <section
-            class="grid min-h-screen place-items-center text-center lg:place-items-start lg:py-56 lg:text-left"
+            class="grid grid-cols-2 items-center text-center lg:py-32 lg:text-left"
         >
             <div class="space-y-8">
                 <h1 class="text-4xl lg:text-7xl">KomangWorks</h1>
@@ -20,7 +20,18 @@ useHead({
                     >
                 </p>
 
-                <Button label="View Products" />
+                <NuxtLink class="inline-block" href="/products">
+                    <Button label="Learn More" />
+                </NuxtLink>
+            </div>
+
+            <div>
+                <NuxtImg
+                    class="rounded-lg"
+                    alt="Kalan de Used Oil"
+                    src="/images/kalan-de-used-oil/1.jpg"
+                    width="600"
+                />
             </div>
         </section>
     </main>
