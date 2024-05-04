@@ -5,12 +5,14 @@ useHead({
 </script>
 
 <template>
-    <main class="lg:px-16">
+    <main class="pt-32 lg:px-16 lg:pt-0">
         <section
-            class="grid grid-cols-2 items-center text-center lg:py-32 lg:text-left"
+            class="grid items-center gap-16 text-center lg:grid-cols-2 lg:py-32 lg:text-left"
         >
-            <div class="space-y-8">
-                <h1 class="text-4xl lg:text-7xl">KomangWorks</h1>
+            <div class="mt-8 space-y-8 lg:mt-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                    KomangWorks
+                </h1>
 
                 <p class="text-xl">
                     Home of
@@ -25,7 +27,7 @@ useHead({
                 </NuxtLink>
             </div>
 
-            <div>
+            <div class="order-first flex justify-center lg:order-last">
                 <img
                     class="rounded-lg"
                     alt="Kalan de Used Oil"
