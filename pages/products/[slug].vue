@@ -23,77 +23,136 @@ useHead({
 })
 
 const selectedVariation = ref(product.value?.variations[0])
-
-watch(selectedVariation, () => console.log(selectedVariation.value))
 </script>
 
 <template>
     <main>
-        <div v-if="product" class="container mx-auto flex w-1/2 flex-col gap-8">
-            <NuxtLink class="inline-block" href="/products">
-                <Button icon="ri ri-arrow-left-line" label="Back to Products" />
-            </NuxtLink>
+        <div v-if="product" class="mt-16 flex flex-col gap-8">
+            <div class="grid gap-8 lg:grid-cols-2">
+                <div>
+                    <h1
+                        class="text-center text-2xl lg:text-4xl"
+                        style="view-transition-name: product-name"
+                    >
+                        {{ product.name }}
+                    </h1>
 
-            <h1
-                class="mt-16 text-center text-4xl"
-                style="view-transition-name: product-name"
-            >
-                {{ product.name }}
-            </h1>
+                    <ClientOnly>
+                        <div class="mt-8 flex flex-col items-center">
+                            <Galleria
+                                :value="selectedVariation.images"
+                                container-class="lg:w-[30rem]"
+                                circular
+                            >
+                                <template #item="{ item }">
+                                    <img
+                                        :src="item"
+                                        class="w-full"
+                                        width="300"
+                                        height="200"
+                                    />
+                                </template>
 
-            <div class="flex flex-col items-center">
-                <Galleria
-                    :value="selectedVariation.images"
-                    container-class="w-[30rem]"
-                    circular
-                >
-                    <template #item="{ item }">
-                        <NuxtImg
-                            :src="`/images/${product.slug}/${selectedVariation.name.toLowerCase()}/${item}`"
-                            class="w-full"
-                            width="300"
-                        />
-                    </template>
+                                <template #thumbnail="{ item }">
+                                    <img
+                                        :src="item"
+                                        class="object-cover"
+                                        width="100"
+                                        height="100"
+                                    />
+                                </template>
+                            </Galleria>
 
-                    <template #thumbnail="{ item }">
-                        <NuxtImg
-                            :src="`/images/${product.slug}/${selectedVariation.name.toLowerCase()}/${item}`"
-                            width="100"
-                        />
-                    </template>
-                </Galleria>
+                            <SelectButton
+                                v-model="selectedVariation"
+                                class="mt-8"
+                                :options="product.variations"
+                                option-label="label"
+                            />
+                        </div>
 
-                <SelectButton
-                    v-model="selectedVariation"
-                    class="mt-8"
-                    :options="product.variations"
-                    option-label="label"
-                />
-            </div>
+                        <template #fallback>
+                            <div class="mt-8 flex justify-center">
+                                <img
+                                    :src="product.main_image"
+                                    :alt="product.name"
+                                    width="500"
+                                    height="300"
+                                />
+                            </div>
+                        </template>
+                    </ClientOnly>
+                </div>
 
-            <div class="flex flex-col items-center">
-                <div class="space-y-4">
-                    <h2 class="text-2xl font-bold">Description</h2>
+                <div class="flex flex-col items-center">
+                    <div class="space-y-4">
+                        <h2 class="text-center text-2xl font-bold lg:text-left">
+                            Description
+                        </h2>
 
-                    <p style="view-transition-name: product-desc">
-                        {{ product.description }}
-                    </p>
-
-                    <Divider />
-
-                    <h2 class="text-2xl font-bold">Features</h2>
-
-                    <ul class="mt-4 space-y-2">
-                        <li
-                            v-for="feature in product.features"
-                            :key="feature"
-                            class="list-disc"
+                        <p
+                            class="text-center lg:text-left"
+                            style="view-transition-name: product-desc"
                         >
-                            {{ feature }}
-                        </li>
-                    </ul>
+                            {{ product.description }}
+                        </p>
 
-                    <Divider />
+                        <Divider />
+
+                        <h2 class="text-center text-2xl font-bold lg:text-left">
+                            Features
+                        </h2>
+
+                        <ul class="ml-8 mt-4 space-y-2">
+                            <li
+                                v-for="feature in product.features"
+                                :key="feature"
+                                class="list-disc"
+                            >
+                                {{ feature }}
+                            </li>
+                        </ul>
+
+                        <Divider />
+
+                        <h2 class="text-center text-2xl font-bold lg:text-left">
+                            Specifications
+                        </h2>
+
+                        <ul class="ml-8 mt-4 space-y-2">
+                            <li
+                                v-for="specification in product.specifications"
+                                :key="specification.part"
+                                class="list-disc"
+                            >
+                                <span class="font-bold">{{
+                                    specification.part
+                                }}</span>
+
+                                <ul>
+                                    <li
+                                        v-for="(
+                                            value, key
+                                        ) in specification.value"
+                                        :key="key"
+                                        :class="key"
+                                    >
+                                        {{ capitalizeFirstLetter(key) }}:
+                                        {{ value }}
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <Divider />
+
+                        <Button
+                            class="w-full lg:w-auto"
+                            label="Order Now"
+                            size="large"
+                            icon="ri-shopping-cart-line"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

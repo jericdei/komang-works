@@ -14,27 +14,29 @@ const { data: products } = await useAsyncData('products', () =>
 </script>
 
 <template>
-    <main class="lg:p-16">
+    <main class="mt-8 lg:p-16">
         <h1 class="text-center text-4xl lg:text-6xl">Products</h1>
 
         <section class="mt-32 flex flex-col items-center space-y-8">
             <div
                 v-for="product in products"
                 :key="product?.name"
-                class="w-[50rem]"
+                class="lg:w-[50rem]"
             >
-                <div class="flex gap-8">
-                    <NuxtImg
-                        :src="product.main_image"
-                        width="300"
-                        class="rounded-xl"
-                        style="view-transition-name: product-image"
-                    />
+                <div class="flex flex-col gap-8 lg:flex-row">
+                    <div class="flex justify-center">
+                        <img
+                            :src="product.main_image"
+                            width="300"
+                            class="rounded-xl"
+                            style="view-transition-name: product-image"
+                        />
+                    </div>
 
-                    <div class="flex flex-col items-start justify-between">
-                        <div class="space-y-4">
+                    <div class="flex flex-col justify-between lg:items-start">
+                        <div class="space-y-4 text-center lg:text-left">
                             <h2
-                                class="text-3xl"
+                                class="text-xl lg:text-3xl"
                                 style="view-transition-name: product-name"
                             >
                                 {{ product.name }}
@@ -44,7 +46,9 @@ const { data: products } = await useAsyncData('products', () =>
                                 {{ product.description }}
                             </p>
 
-                            <div class="flex flex-row gap-2">
+                            <div
+                                class="flex flex-row justify-center gap-2 lg:justify-start"
+                            >
                                 <Tag
                                     v-for="feature in product.features"
                                     :key="feature"
@@ -54,9 +58,14 @@ const { data: products } = await useAsyncData('products', () =>
                             </div>
                         </div>
 
-                        <NuxtLink :href="`/products/${product.slug}`">
-                            <Button label="View Product" />
-                        </NuxtLink>
+                        <div class="mt-4 flex justify-center lg:mt-0">
+                            <NuxtLink
+                                :href="`/products/${product.slug}`"
+                                class="w-full"
+                            >
+                                <Button class="w-full" label="View Product" />
+                            </NuxtLink>
+                        </div>
                     </div>
                 </div>
             </div>

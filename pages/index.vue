@@ -26,7 +26,7 @@ useHead({
             </div>
 
             <div>
-                <NuxtImg
+                <img
                     class="rounded-lg"
                     alt="Kalan de Used Oil"
                     src="/images/kalan-de-used-oil/main.jpg"
