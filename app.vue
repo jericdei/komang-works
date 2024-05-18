@@ -22,6 +22,10 @@ const menuItems = [
         label: 'Products',
         to: '/products',
     },
+    {
+        label: 'Contact',
+        to: '/contact',
+    },
 ]
 </script>
 

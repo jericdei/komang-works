@@ -18,4 +18,7 @@ export default defineNuxtConfig({
         },
         importPT: { from: path.resolve(__dirname, './presets/Lara/') },
     },
+    content: {
+        watch: false,
+    },
 })

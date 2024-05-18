@@ -7,6 +7,7 @@ services:
         ports:
             - 3000
             - 24678
+            - 4000
         labels:
             - traefik.docker.network=dei
             - traefik.http.services.komangworks-app.loadbalancer.server.port=3000
