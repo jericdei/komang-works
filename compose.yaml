@@ -1,0 +1,23 @@
+name: komangworks
+
+services:
+    app:
+        image: oven/bun:1.1.4-alpine
+        container_name: komangworks-app
+        ports:
+            - 3000
+            - 24678
+        labels:
+            - traefik.docker.network=dei
+            - traefik.http.services.komangworks-app.loadbalancer.server.port=3000
+            - traefik.http.routers.komangworks-app.rule=Host(`komangworks.localhost`)
+        networks:
+            - dei
+        volumes:
+            - .:/app
+        working_dir: /app
+        command: bun dev
+
+networks:
+    dei:
+        external: true
